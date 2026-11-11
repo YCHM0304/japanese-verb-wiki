@@ -6,7 +6,8 @@
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 @media print{body{background:white;font-size:12pt}.topbar,.sidebar,.controls,.skip,.form-row,.quiz-grid button,#quiz-reset{display:none!important}.layout{display:block}.course{margin:0;border:0;box-shadow:none}.slide,.slide[hidden]{display:block!important;min-height:0;break-after:page;padding:1cm}.slide h1,.slide h2{font-size:23pt}.source-box{font-size:9pt}.source-box details{display:block}.table-wrap{overflow:visible}.wiki-shell{margin:0;border:0}a{color:inherit}.quiz-grid{display:block}.quiz-grid fieldset{break-inside:avoid;margin-bottom:1rem}}
 </style></head><body><header class="topbar"><a class="brand" href="../index.html">日語動詞變化</a><nav class="toplinks"><a href="../sources.html">教材來源</a><a href="../workflow.html">實際流程</a></nav></header><main class="wiki-shell"><h1 id="github-pages-發布">GitHub Pages 發布</h1>
-<p>目前狀態：已授權發布，等待本機 GitHub CLI 登入；尚未發布。</p>
+<p>目前狀態：已發布至 <a href="https://ychm0304.github.io/japanese-verb-wiki/">GitHub Pages</a>，初次部署後 9 項實際線上測試全部通過。</p>
+<p>公開儲存庫：<a href="https://github.com/YCHM0304/japanese-verb-wiki">YCHM0304/japanese-verb-wiki</a>。實際紀錄見 <a href="records/stage4/deployment-report.html">發布報告</a>。</p>
 <p>發布來源是 <code>site/</code>，包含教學簡報、Wiki 閱讀頁、來源與執行證據。原始教材 <code>raw/</code>、歷史壓縮檔與測試套件保留本機。原工作區根目錄不初始化 Git。</p>
 <h2 id="登入">登入</h2>
 <p>在本機終端執行，依畫面提示在瀏覽器完成授權：</p>
@@ -14,7 +15,10 @@
 gh auth status</code></pre>
 <p>不要在對話貼上密碼或存取權杖。</p>
 <h2 id="發布設定">發布設定</h2>
-<p>預計使用新公開儲存庫 <code>japanese-verb-wiki</code>。若要使用既有儲存庫，先確認網址與既有檔案再推送。</p>
+<p>使用公開儲存庫 <code>YCHM0304/japanese-verb-wiki</code>。本機 <code>site/</code> 已設定 origin，根目錄沒有 Git 儲存庫。</p>
 <p>以 <code>main</code> 分支的 <code>/(root)</code> 作為 Pages 來源。<code>site/index.html</code> 會成為網站首頁；<code>.nojekyll</code> 停用 Jekyll，直接發布現有靜態檔案。所有閱讀連結保持相對路徑，以支援專案網站的子路徑。</p>
-<p>部署後需確認首頁、換頁、動詞示範、Wiki、證據頁與手機尺寸；將實際網址填入 SUBMISSION.md。歷史報告中的「本機版本」描述保留，代表當時狀態。</p>
+<p>已確認首頁、換頁、動詞示範、Wiki、證據頁與手機尺寸，並將實際網址填入 SUBMISSION.md。歷史報告中的「本機版本」與「等待登入」描述保留，代表當時狀態。</p>
+<h2 id="後續更新">後續更新</h2>
+<p>修改本機 Wiki／教學內容後，重建 presentation，檢查通過後將閱讀網站同步至 site（保留 site/.git、.nojekyll 及發布用 README），在 site 中提交與推送 main。不要將整個工作區或 raw 推送至此儲存庫。</p>
+<p>推送後查看 GitHub Actions 的 Pages 部署是否成功，並重新執行 scripts/check_pages.cjs 對公開網址的測試，輸出到新的 records/stage4 紀錄檔。網站維持靜態，沒有執行時第三方依賴。</p>
 <p>官方依據：<a href="https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site">建立 Pages 網站</a>、<a href="https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site">設定發布來源</a>。</p></main></body></html>

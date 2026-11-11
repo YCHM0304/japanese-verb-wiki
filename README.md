@@ -2,6 +2,10 @@
 
 16 頁互動式 HTML 教學簡報，以 Karpathy LLM Wiki 為知識來源。
 
+[開啟公開教學網站](https://ychm0304.github.io/japanese-verb-wiki/) · [公開 Wiki](https://ychm0304.github.io/japanese-verb-wiki/docs/wiki/index.html)
+
+已完成 GitHub Pages 部署，9 項實際線上檢查通過。
+
 - [教學簡報](index.html)
 - [Wiki](docs/wiki/index.html)
 - [來源](sources.html)

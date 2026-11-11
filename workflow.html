@@ -5,4 +5,34 @@
 @media(max-width:720px){body{font-size:16px}.topbar{position:static;padding:.9rem 1rem;align-items:start}.toplinks{font-size:.8rem;gap:.8rem}.brand{font-size:.95rem}.layout{display:block}.sidebar{position:static;padding:.8rem 1rem;max-height:none}.sidebar details{border:1px solid var(--line);padding:.6rem;background:white;border-radius:5px}.sidebar ol{columns:2;column-gap:1rem}.sidebar a{font-size:.8rem;padding:.4rem}.course{margin:.3rem .7rem 2rem}.slide{padding:1.3rem;min-height:0}.slide h1,.slide h2{font-size:1.8rem}.hero-type{font-size:2.5rem}.controls{padding:1rem .8rem;gap:.5rem}.controls button{font-size:.85rem;padding:.5rem .7rem}.page-status{font-size:.8rem}progress{width:75px}th,td{font-size:.9rem;padding:.5rem .65rem}.table-wrap.wide table{min-width:650px}.wiki-shell{margin:.7rem;padding:1.2rem}.wiki-shell h1{font-size:1.7rem}.field{width:100%}.field select{width:100%}.demo-area{padding:.8rem}.sidebar ol{margin-bottom:.2rem}.quiz-grid{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 @media print{body{background:white;font-size:12pt}.topbar,.sidebar,.controls,.skip,.form-row,.quiz-grid button,#quiz-reset{display:none!important}.layout{display:block}.course{margin:0;border:0;box-shadow:none}.slide,.slide[hidden]{display:block!important;min-height:0;break-after:page;padding:1cm}.slide h1,.slide h2{font-size:23pt}.source-box{font-size:9pt}.source-box details{display:block}.table-wrap{overflow:visible}.wiki-shell{margin:0;border:0}a{color:inherit}.quiz-grid{display:block}.quiz-grid fieldset{break-inside:avoid;margin-bottom:1rem}}
-</style></head><body><header class="topbar"><a class="brand" href="index.html">日語動詞變化</a><nav class="toplinks"><a href="sources.html">教材來源</a><a href="workflow.html">實際流程</a></nav></header><main class="wiki-shell"><h1>實際流程與紀錄</h1><p>由本對話的 LLM 與離線程式依序執行，沒有獨立模型 API 或背景全自動 graph 引擎。</p><ol class="workflow-steps"><li>確認範圍與來源，保存原文快照。</li><li>檢查來源筆誤、HTML 跨列與 PDF 欄位。</li><li>逐篇 ingest，整合概念與動詞頁。</li><li>核對規則與來源位置；引用行號不符時返回定位修正。</li><li>查詢 Wiki，整理教學順序與證據。</li><li>生成16頁 HTML 與逐頁內容對應。</li><li>檢查資料、連結與瀏覽器互動；依實際結果修正。</li></ol><p><a href="docs/WORKFLOW.html">流程詳解</a>　<a href="docs/records/stage2/report.html">Wiki 執行報告</a></p><p><a href="docs/records/stage3/report.html">HTML 檢查與反思</a></p></main></body></html>
+</style></head><body><header class="topbar"><a class="brand" href="index.html">日語動詞變化</a><nav class="toplinks"><a href="sources.html">教材來源</a><a href="workflow.html">實際流程</a></nav></header><main class="wiki-shell"><h1>實際流程與驗證摘要</h1><section id="execution"><h2>實際執行與發布</h2><p>完成7份來源的 ingest、Wiki 查詢、規則與證據核對，再生成16頁教學。使用者同意發布後，已將閱讀網站部署至 GitHub Pages。完整的原始快照、逐輪紀錄與測試工具保留本機。</p></section>
+<section id="teaching"><h2>教學編排</h2><p>先讀 Wiki 索引及相關知識頁，再依實際查詢整理分類、四形與例外，產生16頁教學、16個已核對動詞的64種示範與6題練習。規則與來源可從<a href="evidence.html#content-map">逐頁對應表</a>核對。</p></section>
+<section id="checks"><h2>實際檢查與反思</h2><ul><li>Wiki 最終檢查378項通過，含S05的80項分類與四形比對、S06交集的48項四形比對，以及64項規則結果比對。</li><li>離線瀏覽器檢查97項通過，含64種示範、6題練習、手機、列印與停用JavaScript閱讀。</li><li>初次公開部署後9項線上檢查通過；補齊發布文件後11項線上檢查通過。每輪完整紀錄保留本機。</li></ul><p>實際問題包括S07引用行號錯配、生成程式兩處多餘括號，以及功能測試通過後才由截圖發現的側欄換行。因此把來源與引用定位檢查移到教學生成前，生成語法檢查移到HTML輸出前，並在功能測試後保留視覺檢視。樣本不足以推論長期最常出錯節點。</p><p>上述結果有明確範圍，不代表獨立教師審核；手機測試是模擬尺寸，並非實體手機測試。</p></section>
+<section id="submission"><h2>作業成果</h2><p>本網站提供教學簡報、Wiki、來源與證據、實際流程與反思。正式繳交標題中的學校、學號、系級與姓名由使用者填寫。完整繳交文件及歷史報告保留本機。</p></section><h2 id="實際-loopgraph-與修正">實際 Loop／Graph 與修正</h2>
+<p>本專案由使用者與LLM對話決策，LLM維護Wiki並整理教學，本機程式擷取、渲染與檢查。以下節點反映已執行流程；沒有宣稱另有自主執行的LLM API或graph服務。</p>
+<h2 id="已執行路徑">已執行路徑</h2>
+<pre><code>flowchart TD
+ A[討論主題、規範與來源] --&gt; B[取得7份資料並保存快照]
+ B --&gt; C[檢查筆誤、HTML跨列與PDF欄位]
+ C --&gt; D[逐篇ingest、整合Wiki與索引]
+ D --&gt; E[證據定位與規則結果檢查]
+ E --&gt;|S07引用行號不符| E1[重讀快照、修正定位]
+ E1 --&gt; E
+ E --&gt;|通過| F[查詢Wiki與整理16頁教學]
+ F --&gt; G[HTML生成與語法檢查]
+ G --&gt;|兩處多餘括號| G1[修改生成程式、先檢查語法]
+ G1 --&gt; G
+ G --&gt; H[連結、資料、練習及瀏覽器檢查]
+ H --&gt; I[檢視桌面與手機截圖]
+ I --&gt;|目錄編號換行| J[修正CSS並重跑瀏覽檢查]
+ J --&gt; H
+ I --&gt;|通過| K[本機打包與繳交說明]</code></pre>
+<h2 id="節點輸出與返回位置">節點、輸出與返回位置</h2>
+<div class="table-wrap wide"><table><thead><tr><th scope="col">節點</th><th scope="col">執行方式／輸出</th><th scope="col">檢查不通過時</th></tr></thead><tbody><tr><td>來源取得</td><td>Python讀取已確認網址；raw保留原檔、文字、時間、雜湊</td><td>網域限制取得必要讀取權限，仍用相同來源；來源不可用再討論替換</td></tr><tr><td>來源檢查</td><td>LLM讀原文；程式讀HTML表格與PDF欄位；保留S01筆誤</td><td>筆誤記錄採用依據，不改原文；表格關係不明先回原始檔</td></tr><tr><td>Ingest</td><td>每篇摘要、相關概念／動詞更新、索引及log</td><td>回該來源整理，未完成不計篇數</td></tr><tr><td>證據／文法檢查</td><td>規則定位、S05及S06比較、規則推導</td><td>行號錯就重定位；規則或詞形錯就回Wiki修正</td></tr><tr><td>Query</td><td>索引→相關頁→附證據回答；保存讀取清單及雜湊</td><td>證據不足回報缺口，需補來源則返回ingest</td></tr><tr><td>教學整理</td><td>16頁順序、閉合集合示範、6題練習</td><td>缺少規則依據則回查Wiki，不直接編造</td></tr><tr><td>HTML生成</td><td>輸出單檔主簡報與連結的Wiki閱讀頁</td><td>語法錯回生成程式；內容錯回教學／Wiki</td></tr><tr><td>成果檢查</td><td>本地連結、錨點、嵌入資料、瀏覽器與視覺檢查</td><td>操作／排版問題回HTML；語義問題回教學內容</td></tr></tbody></table></div>
+<h2 id="哪些步驟重複">哪些步驟重複</h2>
+<p>來源取得與ingest依每份資料重複；每次新增來源整合既有頁面。查詢依不同問題重複。Wiki檢查在完成登錄前、登錄後與內容修訂後重跑；瀏覽器檢查在視覺修正後重跑。歷史報告均保留，不把多次執行覆寫成一次完美結果。</p>
+<p>失敗項目修正最多兩次仍未解決，就記錄並交使用者決策；這是對話流程規範，不是已實作的背景自動重試引擎。沒有實際觸發的其他分支只列為回復策略，不宣稱跑過。</p>
+<h2 id="為什麼這樣設計">為什麼這樣設計</h2>
+<p>先查來源與Wiki再生成，能把分類、活用與例外放在同一份可維護知識中。來源定位檢查早於簡報生成，避免引用表面存在卻找不到證據；答案表與生成規則分開，避免只用同一套規則自我驗證。最後再驗證操作與版面，讓文法檢查與呈現檢查各自留下證據。</p>
+<p>紀錄：<a href="workflow.html#checks">第一階段</a>、<a href="workflow.html#checks">Wiki第二階段</a>、<a href="workflow.html#checks">HTML第三階段</a>、<a href="sources.html">來源登錄</a>、<a href="evidence.html#content-map">逐頁對應</a>。</p>
+</main></body></html>
